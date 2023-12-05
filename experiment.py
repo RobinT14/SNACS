@@ -9,7 +9,8 @@
 import argparse
 import os
 from Code.format import print_header
-from Code.graph import read_file, print_graph_stats, perform_experiments
+from Code.graph import read_file, print_graph_stats
+from Code.betweenness import perform_experiments
 from rich.console import Console
 
 # from time import sleep

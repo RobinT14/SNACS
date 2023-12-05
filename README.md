@@ -32,9 +32,10 @@ Default=False
 
 This script will perform our experiment consisting of the following steps:
 
-- Exact calculation of betweenness centrality using NetworkX, Brandes implementation.
-- Approximation of betweenness centrality using NetworkX, Brandes implementation, with sampling/pivoting
-  - Sample size of 60/80% of number of nodes.
+1. Exact calculation of betweenness centrality using NetworkX, Brandes implementation.
+2. Approximation of betweenness centrality using NetworkX, Brandes implementation, with sampling/pivoting
+   - Sample size of 60/80% of number of nodes.
+3. Approximation of betweenness centrality using NetworKit,
 
 ### Data:
 
