@@ -8,7 +8,7 @@ import math
 
 def perform_experiments(console, graph, input_file):
     with Progress() as progress:
-        task = progress.add_task("[cyan]Working...", total=2)
+        task = progress.add_task("[cyan]Working...", total=5)
         table = Table(title="Experimental Results - Betweenness Centrality")
         table.add_column("Type", justify="left", style="cyan")
         table.add_column("Execution Time(s)", justify="left", style="green")
@@ -72,6 +72,7 @@ def perform_experiments(console, graph, input_file):
         average_time_geisberger /= 10
         table.add_row(f"\t Average of 10 runs",
                       str(average_time_geisberger))
+        progress.update(task, advance=1)
 
         # !"Riondato" approach:
         table.add_row("Approximation - Riondato/NetworKit")
@@ -89,6 +90,7 @@ def perform_experiments(console, graph, input_file):
         average_time_riondato /= 10
         table.add_row(f"\t Average of 10 runs",
                       str(average_time_riondato))
+        progress.update(task, advance=1)
 
         # !"Bergamini" approach:
         table.add_row("Approximation - Bergamini/NetworKit")
@@ -104,6 +106,7 @@ def perform_experiments(console, graph, input_file):
         average_time_bergamini /= 10
         table.add_row(f"\t Average of 10 runs",
                       str(average_time_bergamini))
+        progress.update(task, advance=1)
 
         console.print(table)
         console.print("\n")
