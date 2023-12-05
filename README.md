@@ -6,10 +6,12 @@ The following repository contains all code as presented in our paper. This code 
 
 ## Files/Folders:
 
-- experiment.py: script to run perform betweenness centrality calculation/approximation using all of our created methods.
+- experiment.py: script to perform betweenness centrality calculation/approximation using all of our created methods.
 - Data: contains all datasets that are used within our paper
 
 ### experiment.py:
+
+Usage of the script as follows:
 
 ```
 usage: experiment.py [-h] [-d DIRECTED] input_file
@@ -27,6 +29,12 @@ Set input graph type to directed graph. True OR False,
 Default=False
 
 ```
+
+This script will perform our experiment consisting of the following steps:
+
+- Exact calculation of betweenness centrality using NetworkX, Brandes implementation.
+- Approximation of betweenness centrality using NetworkX, Brandes implementation, with sampling/pivoting
+  - Sample size of 60/80% of number of nodes.
 
 ### Data:
 
