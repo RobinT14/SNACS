@@ -58,7 +58,7 @@ def main():
             f"[bold red]Error: Input file - '{input_file}' does not exist.[/bold red]\n")
         exit(1)
 
-    graph = read_file(input_file, directed)
+    graph = read_file(input_file, console, directed)
     print_graph_stats(console, input_file, graph)
 
     perform_experiments(console, graph, input_file)

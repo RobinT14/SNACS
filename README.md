@@ -41,3 +41,9 @@ This script will perform our experiment consisting of the following steps:
 
 - Undirected graph: oregon1_010526.txt
   - Nodes: 11174 Edges: 23409
+
+### Dependencies
+
+- rich
+- networkx
+- networkit
