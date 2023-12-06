@@ -112,5 +112,6 @@ def perform_experiments(console, graph, input_file):
         #               str(average_time_bergamini))
         progress.update(task, advance=1)
 
+    console.print("\n")
     console.print(table)
     console.print("\n")
