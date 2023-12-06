@@ -54,8 +54,10 @@ def perform_experiments(console, graph, input_file):
                 input_file, nk.Format.EdgeListTabOne)
         except:
             try:
+                # G = nk.readGraph(
+                #     input_file, nk.Format.EdgeListSpaceZero, directed=False)
                 G = nk.readGraph(
-                    input_file, nk.Format.EdgeListSpaceZero, directed=False)
+                    input_file, nk.Format.EdgeListSpaceOne)
             except:
                 console.print(
                     f"[bold red]Error: Input file - '{input_file}' not readable by NetworKit.[/bold red]\n")
