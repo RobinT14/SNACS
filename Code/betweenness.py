@@ -78,8 +78,6 @@ def perform_experiments(console, graph, input_file):
         table.add_row(f"\t Average of 10 runs",
                       str(average_time_geisberger))
         progress.update(task, advance=1)
-        console.print(table)
-        console.print("\n")
 
         # !"Riondato" approach:
         table.add_row("Approximation - Riondato/NetworKit")
@@ -98,17 +96,18 @@ def perform_experiments(console, graph, input_file):
         table.add_row(f"\t Average of 10 runs",
                       str(average_time_riondato))
         progress.update(task, advance=1)
-        console.print(table)
-        console.print("\n")
 
         # !"Bergamini" approach:
         table.add_row("Approximation - Bergamini/NetworKit")
         average_time_bergamini = 0
         for i in range(0, 1):  # TODO set to 10
             start_time_approx_bergamini = time.time()
-            bergamini_betweenness = nk.centrality.DynApproxBetweenness(
-                G, epsilon=0.01, delta=0.1, storePredecessors=True, universalConstant=0.5)
-            bergamini_betweenness.run()
+            try:
+                bergamini_betweenness = nk.centrality.DynApproxBetweenness(
+                    G, epsilon=0.01, delta=0.1, storePredecessors=True, universalConstant=0.5)
+                bergamini_betweenness.run()
+            except Exception as e:
+                print(f'Error: {e}')
             end_time_approx_bergamini = time.time()
             average_time_bergamini += (end_time_approx_bergamini -
                                        start_time_approx_bergamini)
