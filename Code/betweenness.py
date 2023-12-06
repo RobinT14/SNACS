@@ -84,10 +84,13 @@ def perform_experiments(console, graph, input_file):
         average_time_riondato = 0
         for i in range(0, 1):  # TODO set to 10
             start_time_approx_riondato = time.time()
-            riondato_betweenness = nk.centrality.ApproxBetweenness(G,
-                                                                   epsilon=0.1,
-                                                                   delta=0.1,
-                                                                   universalConstant=0.5)
+            try:
+                riondato_betweenness = nk.centrality.ApproxBetweenness(G,
+                                                                       epsilon=0.1,
+                                                                       delta=0.1,
+                                                                       universalConstant=0.5)
+            except Exception as e:
+                print(f'Error: {e}')
             riondato_betweenness.run()
             end_time_approx_riondato = time.time()
             average_time_riondato += (end_time_approx_riondato -
