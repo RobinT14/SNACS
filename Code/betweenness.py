@@ -7,11 +7,11 @@ import math
 
 
 def perform_experiments(console, graph, input_file):
+    table = Table(title="Experimental Results - Betweenness Centrality")
+    table.add_column("Type", justify="left", style="cyan")
+    table.add_column("Execution Time(s)", justify="left", style="green")
     with Progress() as progress:
         task = progress.add_task("[cyan]Working...", total=5)
-        table = Table(title="Experimental Results - Betweenness Centrality")
-        table.add_column("Type", justify="left", style="cyan")
-        table.add_column("Execution Time(s)", justify="left", style="green")
 
         # !Exact calculation of betweenness centrality using Brandes in NetworkX
         start_time_exact = time.time()
@@ -112,5 +112,5 @@ def perform_experiments(console, graph, input_file):
         #               str(average_time_bergamini))
         progress.update(task, advance=1)
 
-        # console.print(table)
-        # console.print("\n")
+    console.print(table)
+    console.print("\n")
