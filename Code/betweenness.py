@@ -1,7 +1,7 @@
 from rich.progress import Progress
 from rich.table import Table
 import networkx as nx
-import networkit as nk
+# import networkit as nk
 import time
 import math
 
@@ -44,6 +44,8 @@ def perform_experiments(console, graph, input_file):
             table.add_row(f"\t {sample}% sampled, average of 10 runs",
                           str(average_time_brandes))
         progress.update(task, advance=1)
+        console.print(table)
+        console.print("\n")
 
         # !Approximation of betweenness using networkit:
         try:
@@ -73,6 +75,8 @@ def perform_experiments(console, graph, input_file):
         table.add_row(f"\t Average of 10 runs",
                       str(average_time_geisberger))
         progress.update(task, advance=1)
+        console.print(table)
+        console.print("\n")
 
         # !"Riondato" approach:
         table.add_row("Approximation - Riondato/NetworKit")
@@ -91,6 +95,8 @@ def perform_experiments(console, graph, input_file):
         table.add_row(f"\t Average of 10 runs",
                       str(average_time_riondato))
         progress.update(task, advance=1)
+        console.print(table)
+        console.print("\n")
 
         # !"Bergamini" approach:
         table.add_row("Approximation - Bergamini/NetworKit")
