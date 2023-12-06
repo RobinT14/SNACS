@@ -99,7 +99,7 @@ def perform_experiments(console, graph, input_file):
         table.add_row(f"\t Average of 10 runs",
                       str(average_time_riondato))
         progress.update(task, advance=1)
-
+        print('123')
         # !"Bergamini" approach:
         table.add_row("Approximation - Bergamini/NetworKit")
         average_time_bergamini = 0
