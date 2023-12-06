@@ -99,14 +99,14 @@ def perform_experiments(console, graph, input_file):
         # # !"Bergamini" approach:
         table.add_row("Approximation - Bergamini/NetworKit")
         average_time_bergamini = 0
-        for i in range(0, 1):  # TODO set to 10
-            start_time_approx_bergamini = time.time()
-            bergamini_betweenness = nk.centrality.DynApproxBetweenness(
-                G, epsilon=0.01, delta=0.1, storePredecessors=True, universalConstant=0.5)
-            bergamini_betweenness.run()
-            end_time_approx_bergamini = time.time()
-            average_time_bergamini += (end_time_approx_bergamini -
-                                       start_time_approx_bergamini)
+        # for i in range(0, 1):  # TODO set to 10
+        #     start_time_approx_bergamini = time.time()
+        #     bergamini_betweenness = nk.centrality.DynApproxBetweenness(
+        #         G, epsilon=0.01, delta=0.1, storePredecessors=True, universalConstant=0.5)
+        #     bergamini_betweenness.run()
+        #     end_time_approx_bergamini = time.time()
+        #     average_time_bergamini += (end_time_approx_bergamini -
+        #                                start_time_approx_bergamini)
         average_time_bergamini /= 10
         table.add_row(f"\t Average of 10 runs",
                       str(average_time_bergamini))
