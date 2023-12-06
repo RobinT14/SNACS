@@ -44,15 +44,13 @@ def perform_experiments(console, graph, input_file):
             table.add_row(f"\t {sample}% sampled, average of 10 runs",
                           str(average_time_brandes))
         progress.update(task, advance=1)
-        console.print(table)
-        console.print("\n")
 
         # !Approximation of betweenness using networkit:
         try:
             # G = nk.readGraph(
             #     input_file, nk.Format.EdgeListTabZero, directed=False)
             G = nk.readGraph(
-                input_file, nk.Format.EdgeListTabOne, directed=False)
+                input_file, nk.Format.EdgeListTabOne)
         except:
             try:
                 G = nk.readGraph(
