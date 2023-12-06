@@ -61,7 +61,7 @@ def perform_experiments(console, graph, input_file):
             except:
                 console.print(
                     f"[bold red]Error: Input file - '{input_file}' not readable by NetworKit.[/bold red]\n")
-                exit(1)
+                # exit(1)
 
         # !"Geisberger" approach:
         table.add_row("Approximation - Geisberger/NetworKit")
