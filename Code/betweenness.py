@@ -20,6 +20,7 @@ def perform_experiments(console, graph, input_file):
         # TODO Write Exact To File
         table.add_row("Exact - Brandes NetworkX",
                       str(end_time_exact - start_time_exact))
+        table.add_row(row=None)
         progress.update(task, advance=1)
 
         # !Approximation of betweenness using sampling/pivotting in NetworkX:
@@ -43,6 +44,7 @@ def perform_experiments(console, graph, input_file):
             average_time_brandes /= 10
             table.add_row(f"\t {sample}% sampled, average of 10 runs",
                           str(average_time_brandes))
+            table.add_row(row=None)
         progress.update(task, advance=1)
 
         # !Approximation of betweenness using networkit:
@@ -76,6 +78,7 @@ def perform_experiments(console, graph, input_file):
         average_time_geisberger /= 10
         table.add_row(f"\t Average of 10 runs",
                       str(average_time_geisberger))
+        table.add_row(row=None)
         progress.update(task, advance=1)
 
         # !"Riondato" approach:
@@ -94,6 +97,7 @@ def perform_experiments(console, graph, input_file):
         average_time_riondato /= 10
         table.add_row(f"\t Average of 10 runs",
                       str(average_time_riondato))
+        table.add_row(row=None)
         progress.update(task, advance=1)
 
         # # !"Bergamini" approach:
