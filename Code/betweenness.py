@@ -49,12 +49,14 @@ def perform_experiments(console, graph, input_file):
 
         # !Approximation of betweenness using networkit:
         try:
+            # G = nk.readGraph(
+            #     input_file, nk.Format.EdgeListTabZero, directed=False)
             G = nk.readGraph(
-                input_file, nk.Format.EdgeListTabZero)
+                input_file, nk.Format.EdgeListTabOne, directed=False)
         except:
             try:
                 G = nk.readGraph(
-                    input_file, nk.Format.EdgeListSpaceZero)
+                    input_file, nk.Format.EdgeListSpaceZero, directed=False)
             except:
                 console.print(
                     f"[bold red]Error: Input file - '{input_file}' not readable by NetworKit.[/bold red]\n")
