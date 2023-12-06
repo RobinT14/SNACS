@@ -111,6 +111,7 @@ def perform_experiments(console, graph, input_file):
         # table.add_row(f"\t Average of 10 runs",
         #               str(average_time_bergamini))
         progress.update(task, advance=1)
+        progress.update(task, advance=1)
 
         console.print(table)
         console.print("\n")
