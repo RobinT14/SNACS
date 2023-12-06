@@ -46,6 +46,7 @@ def perform_experiments(console, graph, input_file):
         progress.update(task, advance=1)
 
         # !Approximation of betweenness using networkit:
+        print(input_file)
         try:
             # G = nk.readGraph(
             #     input_file, nk.Format.EdgeListTabZero, directed=False)
