@@ -1,7 +1,7 @@
 from rich.progress import Progress
 from rich.table import Table
 import networkx as nx
-# import networkit as nk
+import networkit as nk
 import time
 import math
 
@@ -48,20 +48,20 @@ def perform_experiments(console, graph, input_file):
         # !Approximation of betweenness using networkit:
         print(input_file)
         try:
-            # G = nk.readGraph(
-            #     input_file, nk.Format.EdgeListTabZero, directed=False)
             G = nk.readGraph(
-                input_file, nk.Format.EdgeListTabOne)
+                input_file, nk.Format.EdgeListTabZero, directed=False)
+            # G = nk.readGraph(
+            #     input_file, nk.Format.EdgeListTabOne)
         except:
             try:
-                # G = nk.readGraph(
-                #     input_file, nk.Format.EdgeListSpaceZero, directed=False)
                 G = nk.readGraph(
-                    input_file, nk.Format.EdgeListSpaceOne)
+                    input_file, nk.Format.EdgeListSpaceZero, directed=False)
+                # G = nk.readGraph(
+                #     input_file, nk.Format.EdgeListSpaceOne)
             except:
                 console.print(
                     f"[bold red]Error: Input file - '{input_file}' not readable by NetworKit.[/bold red]\n")
-                # exit(1)
+                exit(1)
 
         # !"Geisberger" approach:
         table.add_row("Approximation - Geisberger/NetworKit")
