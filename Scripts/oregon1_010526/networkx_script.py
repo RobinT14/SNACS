@@ -1,6 +1,5 @@
 from datetime import datetime
 import networkx as nx
-import sys
 import time
 import json
 import math

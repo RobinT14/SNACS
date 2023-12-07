@@ -1,54 +1,65 @@
-# Code snippet 3 for code review session
-# By Roos Wensveen & Robin The
-#
-# This code snippet is used to approximate the betweenness
-# centrality using the networkit library. In this library
-# the approach from "Geisberger" is used as well as the
-# one from our paper "Riondato"
-#
-# To run: python3 codeReview3.py [FILE]
-
+from datetime import datetime
 import networkit as nk
 import sys
 import time
+import json
 
-filename = sys.argv[1]
 
-# Read a graph
-# This accepts edge lists that are separated by a tab or space
-# To get matching node IDs and nodes, start with a vertex 0
-try:
-    G = nk.readGraph(filename, nk.Format.EdgeListTabZero, directed=False)
-except:
+if __name__ == "__main__":
+    filename = '../../Data/oregon1_010526.txt'
+
     try:
-        G = nk.readGraph(filename, nk.Format.EdgeListSpaceZero, directed=False)
+        G = nk.readGraph(filename, nk.Format.EdgeListTabZero, directed=False)
     except:
-        print("Wrong format")
-        exit(1)
+        try:
+            G = nk.readGraph(
+                filename, nk.Format.EdgeListSpaceZero, directed=False)
+        except:
+            print("Wrong format")
+            exit(1)
 
-# "Geisberger" approach:
-betweenness = nk.centrality.EstimateBetweenness(G, 50, True, False)
-start_time = time.time()
+    # "Geisberger" approach:
+    start_time_geisberger = time.time()
+    betweenness = nk.centrality.EstimateBetweenness(G, 50, True, False)
+    betweenness.run()
+    end_time_geisberger = time.time()
 
-betweenness.run()
-print("--- Geisberger approach --- ")
-print('Betweenness centrality ranked', betweenness.ranking())
-print("Total execution time: %s seconds " % (time.time() - start_time))
+    with open("geisberger.json", 'w') as json_file:
+        json.dump(dict(betweenness.ranking()), json_file,
+                  indent=2, sort_keys=True)
+    exit(0)
 
-# "Riondato" approach:
-betweenness_riondato = nk.centrality.ApproxBetweenness(G,
-                                                       epsilon=0.1,
-                                                       delta=0.1,
-                                                       universalConstant=0.5)
-betweenness_riondato.run()
-print("--- Riondato approach --- ")
-print('Betweenness centrality ranked', betweenness_riondato.ranking())
-print("Total execution time: %s seconds " % (time.time() - start_time))
+    print("--- Geisberger approach --- ")
+    print('Betweenness centrality ranked', betweenness.ranking())
+    print("Total execution time: %s seconds " % (time.time() - start_time))
 
-# "Bergamini and Meyerhenke" approach:
-betweenness_bergamini = nk.centrality.DynApproxBetweenness(
-    G, epsilon=0.01, delta=0.1, storePredecessors=True, universalConstant=0.5)
-betweenness_bergamini.run()
-print("--- Bergamini approach --- ")
-print('Betweenness centrality ranked', betweenness_bergamini.ranking())
-print("Total execution time: %s seconds " % (time.time() - start_time))
+    # "Riondato" approach:
+    start_time = time.time()
+    betweenness_riondato = nk.centrality.ApproxBetweenness(G,
+                                                           epsilon=0.1,
+                                                           delta=0.1,
+                                                           universalConstant=0.5)
+    betweenness_riondato.run()
+    print("--- Riondato approach --- ")
+    print('Betweenness centrality ranked', betweenness_riondato.ranking())
+    print("Total execution time: %s seconds " % (time.time() - start_time))
+
+    # Van der Grinten A., Angriman E., and Meyerhenke H. (2019) approach of Kadabra algorithm
+    start_time = time.time()
+    kadabra = nk.centrality.KadabraBetweenness(
+        G, 0.05, 0.8)  # these are the default settings
+    kadabra.run()
+    print("--- Kadabra approach --- ")
+    print('Kadabra centrality ranked', kadabra.ranking())
+    print("Total execution time: %s seconds " % (time.time() - start_time))
+
+    # "Bergamini and Meyerhenke" approach:
+    start_time = time.time()
+    betweenness_bergamini = nk.centrality.DynApproxBetweenness(
+        G, epsilon=0.2, delta=0.1, storePredecessors=True, universalConstant=0.5)
+    print("test")
+    print(betweenness_bergamini.getNumberOfSamples())
+    betweenness_bergamini.run()
+    print("--- Bergamini approach --- ")
+    print('Betweenness centrality ranked', betweenness_bergamini.ranking())
+    print("Total execution time: %s seconds " % (time.time() - start_time))
