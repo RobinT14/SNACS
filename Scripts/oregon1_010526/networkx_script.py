@@ -8,9 +8,9 @@ import math
 if __name__ == "__main__":
 
     filename = '../../Data/oregon1_010526.txt'
-
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
+
     G = nx.read_edgelist(filename,
                          nodetype=int,
                          create_using=nx.Graph,
