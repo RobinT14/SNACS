@@ -8,7 +8,7 @@ import math
 # Undirected and unweighted:
 if __name__ == "__main__":
 
-    filename = sys.argv[1]
+    filename = '../../Data/oregon1_010526.txt'
 
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
@@ -20,7 +20,6 @@ if __name__ == "__main__":
     start_time_exact = time.time()
     betweenness = nx.betweenness_centrality(G)
     end_time_exact = time.time()
-    print('1')
 
     # Write exact betweenness to file:
     sorted_betweenness = {k: betweenness[k] for k in sorted(betweenness)}
@@ -31,7 +30,7 @@ if __name__ == "__main__":
     # Output statistics
     printLine = 'Exact_Brandes_NetworkX,' + filename + ',' +\
         str(end_time_exact - start_time_exact) + ',' + path + '\n'
-    with open('output.log', 'a') as file:
+    with open('networkx_output.log', 'a') as file:
         file.write(printLine)
 
     # Approximations of betweenness using sampling/pivotting
@@ -55,5 +54,5 @@ if __name__ == "__main__":
 
             printLine = f'Approximation_Brandes_NetworkX_{str(sample)}_{str(i)},' + filename + ',' +\
                 str(end_time_approx - start_time_approx) + ',' + path + '\n'
-            with open('output.log', 'a') as file:
+            with open('networkx_output.log', 'a') as file:
                 file.write(printLine)
