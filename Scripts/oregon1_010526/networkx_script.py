@@ -46,7 +46,7 @@ if __name__ == "__main__":
             # Write approximated betweenness to file
             sorted_betweenness_approx = {k: betweenness_approx[k]
                                          for k in sorted(betweenness_approx)}
-            path = f"Results/{current_date_string}_networkx_approximation_{str(sample)}_{str(i)}.json"
+            path = f"NetworkX_Results/{current_date_string}_networkx_approximation_{str(sample)}_{str(i)}.json"
             with open(path, 'w') as json_file:
                 json.dump(sorted_betweenness_approx, json_file,
                           indent=2, sort_keys=True)
