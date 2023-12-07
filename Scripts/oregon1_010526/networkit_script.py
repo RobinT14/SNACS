@@ -1,12 +1,13 @@
 from datetime import datetime
 import networkit as nk
-import sys
 import time
 import json
 
 
 if __name__ == "__main__":
     filename = '../../Data/oregon1_010526.txt'
+    current_datetime = datetime.now()
+    current_date_string = current_datetime.strftime("%d-%m-%Y")
 
     try:
         G = nk.readGraph(filename, nk.Format.EdgeListTabZero, directed=False)
@@ -19,14 +20,23 @@ if __name__ == "__main__":
             exit(1)
 
     # "Geisberger" approach:
-    start_time_geisberger = time.time()
-    betweenness = nk.centrality.EstimateBetweenness(G, 50, True, False)
-    betweenness.run()
-    end_time_geisberger = time.time()
+    for i in range(0, 10):
+        start_time_geisberger = time.time()
+        betweenness = nk.centrality.EstimateBetweenness(G, 50, True, False)
+        betweenness.run()
+        end_time_geisberger = time.time()
 
-    with open("geisberger.json", 'w') as json_file:
-        json.dump(dict(betweenness.ranking()), json_file,
-                  indent=2, sort_keys=True)
+        # Write exact betweenness to file:
+        path = f"NetworKit_Results/{current_date_string}_networkit_geisberger_{str(i)}.json"
+        with open(path, 'w') as json_file:
+            json.dump(dict(betweenness.ranking()), json_file,
+                      indent=2, sort_keys=True)
+
+         # Output statistics
+        printLine = 'Approximation_Geisberger_NetworKit_,' + filename + ',' +\
+            str(end_time_geisberger - start_time_geisberger) + ',' + path + '\n'
+        with open('networkit_output.log', 'a') as file:
+            file.write(printLine)
     exit(0)
 
     print("--- Geisberger approach --- ")
