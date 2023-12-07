@@ -9,11 +9,11 @@ if __name__ == "__main__":
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
-    # Read the adjacency matrix from a file
-    adj_matrix = nk.graphio.readMatrix(filename)
+    adj_matrix = np.loadtxt(filename, dtype=float)
 
     # Create a graph from the adjacency matrix
-    G = nk.graph.Graph(adj_matrix)
+    G = nk.Graph(nk.graphio.EdgeListReader(delimiter=' '))
+    G.fromAdjacencyMatrix(adj_matrix)
 
     # try:
     #     G = nk.readGraph(filename, nk.Format.EdgeListTabZero, directed=False)
