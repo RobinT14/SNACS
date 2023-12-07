@@ -13,8 +13,9 @@ if __name__ == "__main__":
         G = nk.readGraph(filename, nk.Format.EdgeListTabZero, directed=True)
     except:
         try:
-            G = nk.readGraph(
-                filename, nk.Format.EdgeListSpaceZero, directed=False)
+            G = nk.graphio.readEdgeList(
+                filename, separator=" ", directed=False, firstNode=0)
+
         except:
             print("Wrong format")
             exit(1)
