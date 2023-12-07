@@ -33,7 +33,7 @@ if __name__ == "__main__":
                       indent=2, sort_keys=True)
 
          # Output statistics
-        printLine = 'Approximation_Geisberger_NetworKit_,' + filename + ',' +\
+        printLine = f'Approximation_Geisberger_NetworKit_{i},' + filename + ',' +\
             str(end_time_geisberger - start_time_geisberger) + ',' + path + '\n'
         with open('networkit_output.log', 'a') as file:
             file.write(printLine)
@@ -55,7 +55,7 @@ if __name__ == "__main__":
                       indent=2, sort_keys=True)
 
          # Output statistics
-        printLine = 'Approximation_Riondato_NetworKit_,' + filename + ',' +\
+        printLine = f'Approximation_Riondato_NetworKit_{i},' + filename + ',' +\
             str(end_time_riondato - start_time_riondato) + ',' + path + '\n'
         with open('networkit_output.log', 'a') as file:
             file.write(printLine)
@@ -75,7 +75,7 @@ if __name__ == "__main__":
                       indent=2, sort_keys=True)
 
          # Output statistics
-        printLine = 'Approximation_Kadabra_NetworKit_,' + filename + ',' +\
+        printLine = f'Approximation_Kadabra_NetworKit_{i},' + filename + ',' +\
             str(end_time_kadabra - start_time_kadabra) + ',' + path + '\n'
         with open('networkit_output.log', 'a') as file:
             file.write(printLine)
@@ -95,7 +95,7 @@ if __name__ == "__main__":
                       indent=2, sort_keys=True)
 
          # Output statistics
-        printLine = 'Approximation_Bergamini_NetworKit_,' + filename + ',' +\
+        printLine = f'Approximation_Bergamini_NetworKit_{i},' + filename + ',' +\
             str(end_time_bergamini - start_time_bergamini) + ',' + path + '\n'
         with open('networkit_output.log', 'a') as file:
             file.write(printLine)
