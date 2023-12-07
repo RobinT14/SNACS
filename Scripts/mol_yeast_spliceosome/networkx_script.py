@@ -14,8 +14,10 @@ if __name__ == "__main__":
 
     adj_matrix = np.loadtxt(filename, dtype=float)
 
+    print(type(adj_matrix))
+
     # Create a graph from the adjacency matrix
-    G = nx.from_numpy_matrix(adj_matrix)
+    G = nx.from_numpy_array(adj_matrix)
 
     # G = nx.read_edgelist(filename,
     #                      nodetype=int,
