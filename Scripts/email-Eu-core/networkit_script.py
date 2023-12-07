@@ -14,7 +14,7 @@ if __name__ == "__main__":
     except:
         try:
             G = nk.readGraph(
-                filename, nk.Format.EdgeListSpaceZero, directed=True)
+                filename, nk.Format.EdgeListSpaceZero, directed=False)
         except:
             print("Wrong format")
             exit(1)
