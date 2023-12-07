@@ -9,15 +9,21 @@ if __name__ == "__main__":
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
-    try:
-        G = nk.readGraph(filename, nk.Format.EdgeListTabZero, directed=False)
-    except:
-        try:
-            G = nk.readGraph(
-                filename, nk.Format.EdgeListSpaceZero, directed=False)
-        except:
-            print("Wrong format")
-            exit(1)
+    # Read the adjacency matrix from a file
+    adj_matrix = nk.graphio.readMatrix(filename)
+
+    # Create a graph from the adjacency matrix
+    G = nk.graph.Graph(adj_matrix)
+
+    # try:
+    #     G = nk.readGraph(filename, nk.Format.EdgeListTabZero, directed=False)
+    # except:
+    #     try:
+    #         G = nk.readGraph(
+    #             filename, nk.Format.EdgeListSpaceZero, directed=False)
+    #     except:
+    #         print("Wrong format")
+    #         exit(1)
 
     # "Geisberger" approach:
     for i in range(0, 10):
