@@ -84,7 +84,7 @@ if __name__ == "__main__":
     for i in range(0, 10):
         start_time_bergamini = time.time()
         betweenness_bergamini = nk.centrality.DynApproxBetweenness(
-            G, epsilon=0.2, delta=0.1, storePredecessors=True, universalConstant=0.5)
+            G, epsilon=0.1, delta=0.1, storePredecessors=True, universalConstant=0.5)
         betweenness_bergamini.run()
         end_time_bergamini = time.time()
 
