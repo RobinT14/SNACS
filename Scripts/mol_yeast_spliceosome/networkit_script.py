@@ -13,8 +13,7 @@ if __name__ == "__main__":
     adj_matrix = np.loadtxt(filename, dtype=float)
 
     # Create a graph from the adjacency matrix
-    G = nk.Graph(nk.graphio.EdgeListReader(delimiter=' '))
-    G.fromAdjacencyMatrix(adj_matrix)
+    G = nk.graph.Graph(adj_matrix)
 
     # try:
     #     G = nk.readGraph(filename, nk.Format.EdgeListTabZero, directed=False)
