@@ -1,5 +1,6 @@
 from datetime import datetime
 import networkit as nk
+import numpy as np
 import time
 import json
 
