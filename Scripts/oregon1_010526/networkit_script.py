@@ -37,39 +37,65 @@ if __name__ == "__main__":
             str(end_time_geisberger - start_time_geisberger) + ',' + path + '\n'
         with open('networkit_output.log', 'a') as file:
             file.write(printLine)
-    exit(0)
-
-    print("--- Geisberger approach --- ")
-    print('Betweenness centrality ranked', betweenness.ranking())
-    print("Total execution time: %s seconds " % (time.time() - start_time))
 
     # "Riondato" approach:
-    start_time = time.time()
-    betweenness_riondato = nk.centrality.ApproxBetweenness(G,
-                                                           epsilon=0.1,
-                                                           delta=0.1,
-                                                           universalConstant=0.5)
-    betweenness_riondato.run()
-    print("--- Riondato approach --- ")
-    print('Betweenness centrality ranked', betweenness_riondato.ranking())
-    print("Total execution time: %s seconds " % (time.time() - start_time))
+    for i in range(0, 10):
+        start_time_riondato = time.time()
+        betweenness_riondato = nk.centrality.ApproxBetweenness(G,
+                                                               epsilon=0.1,
+                                                               delta=0.1,
+                                                               universalConstant=0.5)
+        betweenness_riondato.run()
+        end_time_riondato = time.time()
+
+        # Write exact betweenness to file:
+        path = f"NetworKit_Results/{current_date_string}_networkit_riondato_{str(i)}.json"
+        with open(path, 'w') as json_file:
+            json.dump(dict(betweenness_riondato.ranking()), json_file,
+                      indent=2, sort_keys=True)
+
+         # Output statistics
+        printLine = 'Approximation_Riondato_NetworKit_,' + filename + ',' +\
+            str(end_time_riondato - start_time_riondato) + ',' + path + '\n'
+        with open('networkit_output.log', 'a') as file:
+            file.write(printLine)
 
     # Van der Grinten A., Angriman E., and Meyerhenke H. (2019) approach of Kadabra algorithm
-    start_time = time.time()
-    kadabra = nk.centrality.KadabraBetweenness(
-        G, 0.05, 0.8)  # these are the default settings
-    kadabra.run()
-    print("--- Kadabra approach --- ")
-    print('Kadabra centrality ranked', kadabra.ranking())
-    print("Total execution time: %s seconds " % (time.time() - start_time))
+    for i in range(0, 10):
+        start_time_kadabra = time.time()
+        betweenness_kadabra = nk.centrality.KadabraBetweenness(
+            G, 0.05, 0.8)  # these are the default settings
+        betweenness_kadabra.run()
+        end_time_kadabra = time.time()
+
+        # Write exact betweenness to file:
+        path = f"NetworKit_Results/{current_date_string}_networkit_kadabra_{str(i)}.json"
+        with open(path, 'w') as json_file:
+            json.dump(dict(betweenness_kadabra.ranking()), json_file,
+                      indent=2, sort_keys=True)
+
+         # Output statistics
+        printLine = 'Approximation_Kadabra_NetworKit_,' + filename + ',' +\
+            str(end_time_kadabra - start_time_kadabra) + ',' + path + '\n'
+        with open('networkit_output.log', 'a') as file:
+            file.write(printLine)
 
     # "Bergamini and Meyerhenke" approach:
-    start_time = time.time()
-    betweenness_bergamini = nk.centrality.DynApproxBetweenness(
-        G, epsilon=0.2, delta=0.1, storePredecessors=True, universalConstant=0.5)
-    print("test")
-    print(betweenness_bergamini.getNumberOfSamples())
-    betweenness_bergamini.run()
-    print("--- Bergamini approach --- ")
-    print('Betweenness centrality ranked', betweenness_bergamini.ranking())
-    print("Total execution time: %s seconds " % (time.time() - start_time))
+    for i in range(0, 10):
+        start_time_bergamini = time.time()
+        betweenness_bergamini = nk.centrality.DynApproxBetweenness(
+            G, epsilon=0.2, delta=0.1, storePredecessors=True, universalConstant=0.5)
+        betweenness_bergamini.run()
+        end_time_bergamini = time.time()
+
+        # Write exact betweenness to file:
+        path = f"NetworKit_Results/{current_date_string}_networkit_bergamini_{str(i)}.json"
+        with open(path, 'w') as json_file:
+            json.dump(dict(betweenness_bergamini.ranking()), json_file,
+                      indent=2, sort_keys=True)
+
+         # Output statistics
+        printLine = 'Approximation_Bergamini_NetworKit_,' + filename + ',' +\
+            str(end_time_bergamini - start_time_bergamini) + ',' + path + '\n'
+        with open('networkit_output.log', 'a') as file:
+            file.write(printLine)
