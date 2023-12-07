@@ -5,7 +5,7 @@ import json
 
 
 if __name__ == "__main__":
-    filename = '../../Data/core.txt'
+    filename = '../../Data/email-Eu-core.txt'
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
