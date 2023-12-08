@@ -12,12 +12,8 @@ if __name__ == "__main__":
 
     try:
         G = nk.readGraph(
-            filename, nk.Format.EdgeListSpaceZero, directed=False)
-        # G = nk.readGraph(
-        #     filename, nk.Format.EdgeList, directed=True, weighted=True)
+            filename, nk.Format.EdgeListSpaceZero, directed=True, weighted=True)
 
-        # G = nk.readWeightedEdgeList(
-        #     filename, separator=' ', weightType=float)
     except Exception as e:
         print('Error:', e)
 
