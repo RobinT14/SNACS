@@ -10,8 +10,11 @@ if __name__ == "__main__":
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
-    G = nk.graphio.readWeightedEdgeList(
-        filename, separator=' ', weightType=float)
+    try:
+        G = nk.graphio.readWeightedEdgeList(
+            filename, separator=' ', weightType=float)
+    except Exception as e:
+        print('Error:', e)
 
     # "Geisberger" approach:
     for i in range(0, 10):
