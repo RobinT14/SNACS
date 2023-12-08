@@ -11,8 +11,11 @@ if __name__ == "__main__":
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
     try:
-        G = nk.graphio.readWeightedEdgeList(
-            filename, separator=' ', weightType=float)
+        G = nk.graphio.readGraph(
+            filename, fileformat=nk.Format.EdgeList, directed=True, weighted=True)
+
+        # G = nk.graphio.readWeightedEdgeList(
+        #     filename, separator=' ', weightType=float)
     except Exception as e:
         print('Error:', e)
 
