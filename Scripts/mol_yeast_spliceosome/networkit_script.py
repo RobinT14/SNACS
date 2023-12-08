@@ -13,9 +13,9 @@ if __name__ == "__main__":
     try:
         G = nk.readGraph(
             filename, nk.Format.EdgeListSpaceZero, directed=True, weighted=True)
-
     except Exception as e:
         print('Error:', e)
+        exit(1)
 
     # "Geisberger" approach:
     for i in range(0, 10):
