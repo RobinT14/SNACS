@@ -10,7 +10,8 @@ if __name__ == "__main__":
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
-    G = nk.readGraph(filename, nk.Format.SNAP)
+    snapReader = nk.graphio.SNAPGraphReader(True, False, 7115)
+    G = snapReader.read(filename)
 
     # "Geisberger" approach:
     for i in range(0, 10):
