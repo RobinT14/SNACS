@@ -6,24 +6,11 @@ import json
 
 
 if __name__ == "__main__":
-    filename = '../../Data/mol_yeast_spliceosome.txt'
+    filename = 'mol_yeast_spliceosome_snap.txt'
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
-    adj_matrix = np.loadtxt(filename, dtype=float)
-
-    # Create a graph from the adjacency matrix
-    G = nk.graph.Graph(adj_matrix)
-
-    # try:
-    #     G = nk.readGraph(filename, nk.Format.EdgeListTabZero, directed=False)
-    # except:
-    #     try:
-    #         G = nk.readGraph(
-    #             filename, nk.Format.EdgeListSpaceZero, directed=False)
-    #     except:
-    #         print("Wrong format")
-    #         exit(1)
+    G = nk.graphio.readWeightedEdgeList(filename, separator=' ')
 
     # "Geisberger" approach:
     for i in range(0, 10):

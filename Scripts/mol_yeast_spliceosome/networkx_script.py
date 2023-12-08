@@ -8,21 +8,11 @@ import math
 # Undirected and unweighted:
 if __name__ == "__main__":
 
-    filename = '../../Data/mol_yeast_spliceosome.txt'
+    filename = 'mol_yeast_spliceosome_snap.txt'
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
-    adj_matrix = np.loadtxt(filename, dtype=float)
-
-    print(type(adj_matrix))
-
-    # Create a graph from the adjacency matrix
-    G = nx.from_numpy_array(adj_matrix)
-
-    # G = nx.read_edgelist(filename,
-    #                      nodetype=int,
-    #                      create_using=nx.Graph,
-    #                      data=(("weight", float), ))
+    G = nx.read_weighted_edgelist(filename, nodetype=float)
 
     start_time_exact = time.time()
     betweenness = nx.betweenness_centrality(G)
