@@ -6,16 +6,19 @@ import json
 
 
 if __name__ == "__main__":
-    filename = 'mol_yeast_spliceosome_snap.txt'
+    filename = 'mc_mullen_snap.txt'
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
     try:
-        G = nk.readGraph(
-            filename, nk.Format.EdgeListSpaceZero, directed=True, weighted=True)
-    except Exception as e:
-        print('Error:', e)
-        exit(1)
+        G = nk.readGraph(filename, nk.Format.EdgeListTabZero, directed=False)
+    except:
+        try:
+            G = nk.readGraph(
+                filename, nk.Format.EdgeListSpaceZero, directed=False)
+        except:
+            print("Wrong format")
+            exit(1)
 
     # "Geisberger" approach:
     for i in range(0, 10):

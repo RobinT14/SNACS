@@ -8,11 +8,14 @@ import math
 # Undirected and unweighted:
 if __name__ == "__main__":
 
-    filename = 'mol_yeast_spliceosome_snap.txt'
+    filename = 'mc_mullen_snap.txt'
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
-    G = nx.read_weighted_edgelist(filename, nodetype=float)
+    G = nx.read_edgelist(filename,
+                         nodetype=int,
+                         create_using=nx.Graph,
+                         data=(("weight", float), ))
 
     start_time_exact = time.time()
     betweenness = nx.betweenness_centrality(G)
