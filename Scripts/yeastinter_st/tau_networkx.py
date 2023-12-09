@@ -23,7 +23,7 @@ def calculate_kendall_tau(exact_betweenness, approx_betweenness):
 
 
 def main():
-    exact_file_path = 'NetworkX_Results/06-12-2023_networkx_exact.json'
+    exact_file_path = 'NetworkX_Results/09-12-2023_networkx_exact.json'
     exact_betweenness = read_betweenness_from_json(exact_file_path)
 
     file1 = open('networkx_output.log', 'r')
