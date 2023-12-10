@@ -5,7 +5,7 @@ import json
 
 
 if __name__ == "__main__":
-    filename = '../../Data/yeastinter_st.txt'
+    filename = 'data.csv'
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
