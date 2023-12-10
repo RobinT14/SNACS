@@ -34,6 +34,7 @@ if __name__ == "__main__":
             str(end_time_geisberger - start_time_geisberger) + ',' + path + '\n'
         with open('networkit_output.log', 'a') as file:
             file.write(printLine)
+    exit(0)
 
     # "Riondato" approach:
     for i in range(0, 10):
