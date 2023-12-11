@@ -35,33 +35,33 @@ if __name__ == "__main__":
     #     with open('networkit_output_tuned.log', 'a') as file:
     #         file.write(printLine)
 
-    # "Riondato" approach:
-    for i in range(0, 10):
-        start_time_riondato = time.time()
-        betweenness_riondato = nk.centrality.ApproxBetweenness(G,
-                                                               epsilon=0.05,
-                                                               delta=0.1,
-                                                               universalConstant=0.5)
-        betweenness_riondato.run()
-        end_time_riondato = time.time()
+    # # "Riondato" approach:
+    # for i in range(0, 10):
+    #     start_time_riondato = time.time()
+    #     betweenness_riondato = nk.centrality.ApproxBetweenness(G,
+    #                                                            epsilon=0.05,
+    #                                                            delta=0.1,
+    #                                                            universalConstant=0.5)
+    #     betweenness_riondato.run()
+    #     end_time_riondato = time.time()
 
-        # Write exact betweenness to file:
-        path = f"NetworKit_Results_Tuned/{current_date_string}_networkit_riondato_{str(i)}.json"
-        with open(path, 'w') as json_file:
-            json.dump(dict(betweenness_riondato.ranking()), json_file,
-                      indent=2, sort_keys=True)
+    #     # Write exact betweenness to file:
+    #     path = f"NetworKit_Results_Tuned/{current_date_string}_networkit_riondato_{str(i)}.json"
+    #     with open(path, 'w') as json_file:
+    #         json.dump(dict(betweenness_riondato.ranking()), json_file,
+    #                   indent=2, sort_keys=True)
 
-         # Output statistics
-        printLine = f'Approximation_Riondato_NetworKit_{i},' + filename + ',' +\
-            str(end_time_riondato - start_time_riondato) + ',' + path + '\n'
-        with open('networkit_output_tuned.log', 'a') as file:
-            file.write(printLine)
+    #      # Output statistics
+    #     printLine = f'Approximation_Riondato_NetworKit_{i},' + filename + ',' +\
+    #         str(end_time_riondato - start_time_riondato) + ',' + path + '\n'
+    #     with open('networkit_output_tuned.log', 'a') as file:
+    #         file.write(printLine)
 
     # Van der Grinten A., Angriman E., and Meyerhenke H. (2019) approach of Kadabra algorithm
     for i in range(0, 10):
         start_time_kadabra = time.time()
         betweenness_kadabra = nk.centrality.KadabraBetweenness(
-            G, 0.0001, 0.8)  # these are the default settings
+            G, 0.001, 0.8)  # these are the default settings
         betweenness_kadabra.run()
         end_time_kadabra = time.time()
 
