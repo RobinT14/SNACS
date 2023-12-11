@@ -19,7 +19,7 @@ if __name__ == "__main__":
     # "Geisberger" approach:
     for i in range(0, 10):
         start_time_geisberger = time.time()
-        betweenness = nk.centrality.EstimateBetweenness(G, 10000, True, False)
+        betweenness = nk.centrality.EstimateBetweenness(G, 5000, True, False)
         betweenness.run()
         end_time_geisberger = time.time()
 
