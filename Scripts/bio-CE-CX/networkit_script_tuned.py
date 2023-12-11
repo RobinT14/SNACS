@@ -16,30 +16,30 @@ if __name__ == "__main__":
         print('Error:', e)
         exit(1)
 
-    # "Geisberger" approach:
-    for i in range(0, 10):
-        start_time_geisberger = time.time()
-        betweenness = nk.centrality.EstimateBetweenness(G, 5000, True, False)
-        betweenness.run()
-        end_time_geisberger = time.time()
+    # # "Geisberger" approach:
+    # for i in range(0, 10):
+    #     start_time_geisberger = time.time()
+    #     betweenness = nk.centrality.EstimateBetweenness(G, 5000, True, False)
+    #     betweenness.run()
+    #     end_time_geisberger = time.time()
 
-        # Write exact betweenness to file:
-        path = f"NetworKit_Results_Tuned/{current_date_string}_networkit_geisberger_{str(i)}.json"
-        with open(path, 'w') as json_file:
-            json.dump(dict(betweenness.ranking()), json_file,
-                      indent=2, sort_keys=True)
+    #     # Write exact betweenness to file:
+    #     path = f"NetworKit_Results_Tuned/{current_date_string}_networkit_geisberger_{str(i)}.json"
+    #     with open(path, 'w') as json_file:
+    #         json.dump(dict(betweenness.ranking()), json_file,
+    #                   indent=2, sort_keys=True)
 
-         # Output statistics
-        printLine = f'Approximation_Geisberger_NetworKit_{i},' + filename + ',' +\
-            str(end_time_geisberger - start_time_geisberger) + ',' + path + '\n'
-        with open('networkit_output_tuned.log', 'a') as file:
-            file.write(printLine)
+    #      # Output statistics
+    #     printLine = f'Approximation_Geisberger_NetworKit_{i},' + filename + ',' +\
+    #         str(end_time_geisberger - start_time_geisberger) + ',' + path + '\n'
+    #     with open('networkit_output_tuned.log', 'a') as file:
+    #         file.write(printLine)
 
     # "Riondato" approach:
     for i in range(0, 10):
         start_time_riondato = time.time()
         betweenness_riondato = nk.centrality.ApproxBetweenness(G,
-                                                               epsilon=0.01,
+                                                               epsilon=0.05,
                                                                delta=0.1,
                                                                universalConstant=0.5)
         betweenness_riondato.run()
