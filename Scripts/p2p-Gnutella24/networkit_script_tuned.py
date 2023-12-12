@@ -22,7 +22,7 @@ if __name__ == "__main__":
     # "Geisberger" approach:
     for i in range(0, 10):
         start_time_geisberger = time.time()
-        betweenness = nk.centrality.EstimateBetweenness(G, 10000, True, False)
+        betweenness = nk.centrality.EstimateBetweenness(G, 5000, True, False)
         betweenness.run()
         end_time_geisberger = time.time()
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     for i in range(0, 10):
         start_time_riondato = time.time()
         betweenness_riondato = nk.centrality.ApproxBetweenness(G,
-                                                               epsilon=0.01,
+                                                               epsilon=0.05,
                                                                delta=0.1,
                                                                universalConstant=0.5)
         betweenness_riondato.run()
@@ -64,7 +64,7 @@ if __name__ == "__main__":
     for i in range(0, 10):
         start_time_kadabra = time.time()
         betweenness_kadabra = nk.centrality.KadabraBetweenness(
-            G, 0.0001, 0.1)  # these are the default settings
+            G, 0.001, 0.1)  # these are the default settings
         betweenness_kadabra.run()
         end_time_kadabra = time.time()
 
