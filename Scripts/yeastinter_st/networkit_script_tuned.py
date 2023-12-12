@@ -1,12 +1,11 @@
 from datetime import datetime
 import networkit as nk
-import numpy as np
 import time
 import json
 
 
 if __name__ == "__main__":
-    filename = 'mol_yeast_spliceosome_snap.txt'
+    filename = '../../Data/yeastinter_st.txt'
     current_datetime = datetime.now()
     current_date_string = current_datetime.strftime("%d-%m-%Y")
 
